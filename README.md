@@ -1,6 +1,6 @@
 CMD-Chart
 
-<img width="100%" src="demo.gif">
+<img width="100%" src="chart.gif">
 
 Tiny library for charting histograms on the command-line, written in and for nodejs.
 
