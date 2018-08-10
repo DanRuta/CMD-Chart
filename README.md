@@ -41,11 +41,13 @@ This does the plotting
 _array_ **data** - The data array
 _object_ options: An optional configuration object
 
-This refreshes an existing chart with new data
+This refreshes an existing chart with new data, and new styles. If an animation duration is given, the animation will play again.
 
-### CMDChart.clear(data, options)
+### CMDChart.clear()
 
 This just clears the existing chart.
+
+It's important that no other things are logged to the console, during animation, or before clearing the chart.
 
 ---
 
@@ -67,14 +69,17 @@ _string_ - An optional heading for the chart. Will be roughly in the middle
 
 ### rows
 _positive integer_ - You can set the height of the bars with this. The axis and chart will scale accordingly. This does not include the title line, if a title is given, or the x axis
+
 **default** - 15
 
 ### animation
 _positive integer_ - The number of milliseconds to perform the rendering animation for
+
 **default** - 0
 
 ### colours
 _object_ - Another configuration object, with for colour options
+
 **default** - white foreground, black background
 
 The colour options are as follows, for both foreground, as well as background:
