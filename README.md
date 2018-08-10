@@ -51,7 +51,7 @@ _object_ **options** - An optional configuration object
 This refreshes an existing chart with new data, and new styles. If an animation duration is given, the animation will play again.
 
 ### CMDChart.clear() | CMDChart.clear(lines)
-_integer_ **data** - When given no parameters, it clears the existing chart. When given a positive integer, it will clear that many lines from the console. This may be useful to remove any lines that were logged out after the chart, if you wish to clear it.
+_integer_ **lines** - When given no parameters, it clears the existing chart. When given a positive integer, it will clear that many lines from the console. This may be useful to remove any lines that were logged out after the chart, if you wish to clear it.
 
 It's important that no other things are logged to the console, during animation. Again, if you log anything out before clearing the chart, you can use `CMDChart.clear(lines)` to remove those lines first.
 
@@ -71,6 +71,7 @@ The available configurations are as follows:
 
 ### title
 _string_ - An optional heading for the chart. Will be roughly in the middle
+
 **default** - none
 
 ### rows
