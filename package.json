@@ -1,0 +1,24 @@
+{
+  "name": "cmd-chart",
+  "version": "1.0.0",
+  "description": "An animated, colourful, dependency-free histogram charting library for command line",
+  "main": "CMDChart.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanRuta/CMD-Chart.git"
+  },
+  "keywords": ["command", "line", "chart", "plot", "histogram", "animation", "colours"],
+  "author": "",
+  "author": "Dan Ruta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DanRuta/CMD-Chart/issues"
+  },
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "homepage": "https://github.com/DanRuta/CMD-Chart#readme"
+}

@@ -1,5 +1,8 @@
 # CMD-Chart
 
+[![NPM](https://nodei.co/npm/cmd-chart.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/cmd-chart/)
+
+
 <img width="100%" src="README images/chart.gif">
 
 Tiny animated, colourful, dependency-free histogram charting library for command line, written in and for nodejs.
