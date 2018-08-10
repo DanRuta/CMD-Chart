@@ -122,7 +122,14 @@ exports.CMDChart = class CMDChart {
     }
 
     static refresh (data, opts) {
-        this.clear()
+
+        if (this.animationStartTime) {
+            process.stdout.moveCursor(0, -this.clearRows)
+            process.stdout.clearLine()
+            process.stdout.cursorTo(0)
+        } else {
+            this.clear()
+        }
 
         // Avoid clearing misalignment issues if it's removed
         if (this.title && !opts.title) {
