@@ -112,40 +112,57 @@ exports.CMDChart = class CMDChart {
             let now = Date.now()
 
             if (now - this.animationStartTime < this.animation) {
-                setTimeout(() => this.refresh(data, {title, rows, colours, animation}), 10)
+                return new Promise(resolve => {
+                    setTimeout(async () => {
+                        await this.refresh(data, {title, rows, colours, animation})
+                        resolve()
+                    }, 10)
+                })
             } else {
                 this.animation = 0
                 this.animationStartTime = undefined
-                setTimeout(() => this.refresh(data, {title, rows, colours, animation: 0}), 10)
+                return new Promise(resolve => {
+                    setTimeout(async () => {
+                        await this.refresh(data, {title, rows, colours, animation: 0})
+                        resolve()
+                    }, 10)
+                })
             }
         }
     }
 
     static refresh (data, opts) {
 
-        if (this.animationStartTime) {
-            process.stdout.moveCursor(0, -this.clearRows)
-            process.stdout.clearLine()
-            process.stdout.cursorTo(0)
-        } else {
-            this.clear()
-        }
-
         // Avoid clearing misalignment issues if it's removed
         if (this.title && !opts.title) {
             opts.title = " "
         }
 
+        if (this.animationStartTime || opts.animation) {
+            process.stdout.moveCursor(0, -this.clearRows)
+            process.stdout.clearLine()
+            process.stdout.cursorTo(0)
+            return new Promise(async resolve => {
+                await this.plot(data, opts)
+                resolve()
+            })
+        } else {
+            this.clear()
+        }
+
         this.plot(data, opts)
     }
 
-    static clear () {
-        for (let i=this.clearRows; i>0; i--) {
+    static clear (lines=0) {
+        for (let i=lines||this.clearRows; i>0; i--) {
             process.stdout.moveCursor(0, -1)
             process.stdout.clearLine()
             process.stdout.cursorTo(0)
         }
-        this.clearRows = 0
+
+        if (!lines) {
+            this.clearRows = 0
+        }
     }
 
     static getFill (v, r) {

@@ -8,7 +8,7 @@ Tiny animated, colourful, dependency-free histogram charting library for command
 
 For now, the only type of chart supported are histograms, as this is what I was working with when I got distracted.
 
-In the future, I may add other types. Pull requests are open, if someone would like a particular type supported, and I don't get the time to get around to it.
+In the future, I may add other types. Open an issue if you'd like another particular type supported. If I don't find the time to get around to it, pull requests are always open.
 
 ## Documentation
 
@@ -33,21 +33,27 @@ The basic API structure is as follows:
 
 ### CMDChart.plot(data, options)
 _array_ **data** - The data array
-_object_ options: An optional configuration object
+
+_object_ **options** - An optional configuration object
+
+**Returns** - When given an animation duration, this returns a promise.
 
 This does the plotting
 
 ### CMDChart.refresh(data, options)
 _array_ **data** - The data array
-_object_ options: An optional configuration object
+
+_object_ **options** - An optional configuration object
+
+**Returns** - When given an animation duration, this returns a promise.
+
 
 This refreshes an existing chart with new data, and new styles. If an animation duration is given, the animation will play again.
 
-### CMDChart.clear()
+### CMDChart.clear() | CMDChart.clear(lines)
+_integer_ **data** - When given no parameters, it clears the existing chart. When given a positive integer, it will clear that many lines from the console. This may be useful to remove any lines that were logged out after the chart, if you wish to clear it.
 
-This just clears the existing chart.
-
-It's important that no other things are logged to the console, during animation, or before clearing the chart.
+It's important that no other things are logged to the console, during animation. Again, if you log anything out before clearing the chart, you can use `CMDChart.clear(lines)` to remove those lines first.
 
 ---
 
@@ -122,3 +128,21 @@ CMDChart.plot(data, {
 })
 ```
 <img width="100%" src="README images/example.gif">
+
+
+And, if you want to wait for the chart to finish its rendering animation, before you do anything else, you can await its returned promise, like so:
+
+```javascript
+CMDChart.plot(data, {
+    title: "Hello World",
+    animation: 1000,
+    rows: 10,
+    colours: {
+        bars: "green",
+        keys: "green",
+        chartBackground: "white",
+        axis: "red"
+    }
+}).then(() => console.log("done"))
+```
+<img width="100%" src="README images/example2.gif">
