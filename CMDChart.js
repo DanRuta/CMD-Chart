@@ -2,7 +2,7 @@
 
 exports.CMDChart = class CMDChart {
 
-    static plot (data, {title, rows=15, clearRows, colours={}, animation=0}={}) {
+    static plot (data, {title, rows=15, colours={}, animation=0}={}) {
 
         // Colours Start
         const cData = {
@@ -112,19 +112,17 @@ exports.CMDChart = class CMDChart {
             let now = Date.now()
 
             if (now - this.animationStartTime < this.animation) {
-                setTimeout(() => this.refresh(data, {title, rows, clearRows, colours, animation}), 10)
+                setTimeout(() => this.refresh(data, {title, rows, colours, animation}), 10)
             } else {
                 this.animation = 0
                 this.animationStartTime = undefined
-                setTimeout(() => this.refresh(data, {title, rows, clearRows, colours, animation: 0}), 10)
+                setTimeout(() => this.refresh(data, {title, rows, colours, animation: 0}), 10)
             }
         }
     }
 
     static refresh (data, opts) {
-        process.stdout.moveCursor(0, -this.clearRows)
-        process.stdout.clearLine()
-        process.stdout.cursorTo(0)
+        this.clear()
 
         // Avoid clearing misalignment issues if it's removed
         if (this.title && !opts.title) {
