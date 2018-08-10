@@ -119,7 +119,6 @@ exports.CMDChart = class CMDChart {
                 setTimeout(() => this.refresh(data, {title, rows, clearRows, colours, animation: 0}), 10)
             }
         }
-        // Animation end
     }
 
     static refresh (data, opts) {
@@ -133,6 +132,15 @@ exports.CMDChart = class CMDChart {
         }
 
         this.plot(data, opts)
+    }
+
+    static clear () {
+        for (let i=this.clearRows; i>0; i--) {
+            process.stdout.moveCursor(0, -1)
+            process.stdout.clearLine()
+            process.stdout.cursorTo(0)
+        }
+        this.clearRows = 0
     }
 
     static getFill (v, r) {
